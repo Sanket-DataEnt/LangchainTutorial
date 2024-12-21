@@ -1,10 +1,8 @@
 from auth.config import HUGGINGFACEHUB_API_TOKEN
 from utils.logger import logger
 from template.prompttemplate import prompt
-# from langchain_community.llms import HuggingFaceHub
 from langchain_huggingface import HuggingFaceEndpoint
-# from langchain_community.llms import HuggingFaceLLM
-from langchain.chains import LLMChain
+import time
 
 import os
 
@@ -31,8 +29,25 @@ hub_llm = HuggingFaceEndpoint(
 # initialise LLMChain
 llm_chain = prompt | hub_llm
 
-question = "What is the capital of France?"
+# single question
+single_question = "What is the capital of France?"
+
+# multi questions
+
+multiple_questions = [
+    {"question": "What is the capital of France?"},
+    {"question": "What is the capital of Germany?"},
+    {"question": "What is the capital of Italy?"},
+]
 
 # # generate answer
-response = llm_chain.invoke({"question": question})
-logger.info(f"RESPONSE : {response}")
+response = llm_chain.invoke({"question": single_question})
+
+# generate multiple answers
+
+for question in multiple_questions:
+    start_time = time.time()
+    multiple_response = llm_chain.invoke(question)
+    logger.info(f"Multiple RESPONSE : {multiple_response}, Time taken: {(time.time() - start_time):.2f} seconds")
+
+# logger.info(f"RESPONSE : {response}")
