@@ -177,3 +177,5 @@ cython_debug/
 /pyvenv.cfg
 *.pyc
 
+# secrets
+config.json
