@@ -1,15 +1,13 @@
-from langchain import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 
 template = """Question : {question}
 
-Answer : """
+Answer: give the exact answer"""
 
-prompt_template = PromptTemplate(
-                  template = template,
-                  input_variable = ['question']
-                  )
+# prompt = PromptTemplate(
+#         template = template,
+#         input_variables = ['question']
+#         )
 
-# user question
-
-Question = "What is the capital of France?"
+prompt = PromptTemplate.from_template(template)
