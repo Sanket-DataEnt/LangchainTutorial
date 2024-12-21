@@ -31,7 +31,7 @@ hub_llm = HuggingFaceEndpoint(
 # initialise LLMChain
 llm_chain = prompt | hub_llm
 
-question = "What is the capital of India?"
+question = "What is the capital of France?"
 
 # # generate answer
 response = llm_chain.invoke({"question": question})
