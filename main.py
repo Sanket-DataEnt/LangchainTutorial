@@ -62,8 +62,6 @@ context_wrong_question = "What is the capital of India?"
 context_response = llm_chain.invoke({"question": context_wrong_question})
 logger.info(f"CONTEXT WRONG RESPONSE : {context_response['text']}")
 
-### To work on optimizing the prompt to answer with context information only. Currently the model is not able to answer the question based on the context information provided.
-
 
 
 
