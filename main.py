@@ -4,24 +4,16 @@ from template.prompttemplate import prompt
 from langchain_huggingface import HuggingFaceEndpoint
 import time
 
-import os
+# import os
 
-os.environ['HUGGINGFACEHUB_API_TOKEN'] = HUGGINGFACEHUB_API_TOKEN
+# os.environ['HUGGINGFACEHUB_API_TOKEN'] = HUGGINGFACEHUB_API_TOKEN
 
-
-# logger.info(f"API token: {HUGGINGFACEHUB_API_TOKEN}")
-
-# # initialise Hub LLM
-# hub_llm = HuggingFaceHub(
-#     repo_id='google/flan-t5-xl',
-#     model_kwargs={'temperature':1e-10,}
-# )
 
 # initialise HuggingFaceEndpoint
 hub_llm = HuggingFaceEndpoint(
     repo_id='mistralai/Mistral-7B-Instruct-v0.2',
     temperature=0.5,
-    max_length=128,
+    max_new_tokens=128,
     huggingfacehub_api_token = HUGGINGFACEHUB_API_TOKEN
     )
 
