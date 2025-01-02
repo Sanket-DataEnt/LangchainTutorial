@@ -72,8 +72,6 @@ fewshot_question = "What is the meaning of wife?"
 fewshot_response = llm_chain.invoke({"question": fewshot_question})
 logger.info(f"FEWSHOT RESPONSE : {fewshot_response['text']}")
 
-# To work on optimizing fewshot response format
-
 
 
 
