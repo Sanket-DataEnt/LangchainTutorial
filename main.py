@@ -1,6 +1,6 @@
 from auth.config import HUGGINGFACEHUB_API_TOKEN
 from utils.logger import logger
-from utils.prompt import basic_prompt, context_prompt, fewshot_prompt
+from utils.prompt import basic_prompt, context_prompt, fewshot_prompt, few_shot_prompt_template, dynamic_prompt_template
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain.chains import LLMChain
 import time
@@ -54,23 +54,29 @@ llm_chain = LLMChain(
 )
 
 # Context question Response
-context_correct_question = "Which libraries and model providers offer LLMs?"
-context_response = llm_chain.invoke({"question": context_correct_question})
-logger.info(f"CONTEXT CORRECT RESPONSE : {context_response}")
+# context_correct_question = "Which libraries and model providers offer LLMs?"
+# context_response = llm_chain.invoke({"question": context_correct_question})
+# logger.info(f"CONTEXT CORRECT RESPONSE : {context_response}")
 
-context_wrong_question = "What is the capital of India?"
-context_response = llm_chain.invoke({"question": context_wrong_question})
-logger.info(f"CONTEXT WRONG RESPONSE : {context_response['text']}")
+# context_wrong_question = "What is the capital of India?"
+# context_response = llm_chain.invoke({"question": context_wrong_question})
+# logger.info(f"CONTEXT WRONG RESPONSE : {context_response['text']}")
 
 
-# Few Shots Response
-llm_chain = LLMChain(
-    prompt=fewshot_prompt,
-    llm=hub_llm
-)
-fewshot_question = "What is the meaning of wife?"
-fewshot_response = llm_chain.invoke({"question": fewshot_question})
-logger.info(f"FEWSHOT RESPONSE : {fewshot_response['text']}")
+# # Few Shots Response
+# llm_chain = LLMChain(
+#     prompt=fewshot_prompt,
+#     llm=hub_llm
+# )
+# fewshot_question = "What is the meaning of wife?"
+# fewshot_response = llm_chain.invoke({"question": fewshot_question})
+# logger.info(f"FEWSHOT RESPONSE : {fewshot_response['text']}")
+
+# query = "What is the meaning of life?"
+
+# print(few_shot_prompt_template.format(query=query))
+
+print(dynamic_prompt_template.format(query="How do birds fly?"))
 
 
 
