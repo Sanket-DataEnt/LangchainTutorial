@@ -2,7 +2,7 @@ from auth.config import HUGGINGFACEHUB_API_TOKEN
 from utils.logger import logger
 from utils.prompt import basic_prompt, context_prompt, fewshot_prompt, few_shot_prompt_template, dynamic_prompt_template
 from langchain_huggingface import HuggingFaceEndpoint
-from langchain.chains import LLMChain
+from langchain.chains import LLMChain, ConversationChain
 import time
 
 # import os
@@ -76,8 +76,14 @@ llm_chain = LLMChain(
 
 # print(few_shot_prompt_template.format(query=query))
 
-print(dynamic_prompt_template.format(query="How do birds fly?"))
+# print(dynamic_prompt_template.format(query="How do birds fly?"))
+
+### Conversation Chain
 
 
+# now initialize the conversation chain
+conversation = ConversationChain(llm=hub_llm)
+
+print(conversation.prompt.template)
 
 
